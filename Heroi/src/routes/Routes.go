@@ -1,22 +1,12 @@
 package routes
 
-import (
-	"github.com/gin-gonic/gin"
-	"hero-api/src/controllers"
-	"hero-api/src/dataBase"
-)
-
 func HandleRequests() {
 
-	dataBase.ConnectDataBase()
-	routes := gin.Default()
+	// http.HandleFunc("/herois", controllers.GetHeroes)
+	// http.HandleFunc("/heroi", controllers.GetHero)
+	// http.HandleFunc("/heroi", controllers.CreateHero)
+	// http.HandleFunc("/heroi", controllers.UpdateHero)
+	// http.HandleFunc("/heroi", controllers.DeleteHero)
 
-	routes.GET("/heroes", controllers.GetHeroes)
-	routes.GET("/heroes/:id", controllers.GetHero)
-	routes.POST("/heroes", controllers.AddHero)
-	routes.PUT("/heroes/:id", controllers.UpdateHero)
-	routes.DELETE("/heroes/:id", controllers.DeleteHero)
-	routes.GET("/heroes/name/:hero_name", controllers.GetHeroByHeroName)
-
-	routes.Run(":8080")
+	// log.Fatal(http.ListenAndServe(":8080", nil))
 }

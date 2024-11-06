@@ -1,28 +1,21 @@
 package dataBase
 
 import (
-	"fmt"
-	_ "github.com/go-sql-driver/mysql"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-	"hero-api/src/models"
+	"database/sql"
+	_ "github.com/lib/pq"
 	"log"
 )
 
-var (
-	DB  *gorm.DB
-	err error
-)
-
 // Funcao para conectar ao banco de dados
-func ConnectDataBase() {
+func ConnectDataBase() *sql.DB {
 	// Data Source Name do banco de dados
-	dataSourceName := "root:ceub123456@tcp(127.0.0.1:3306)/heroes_db" // Atualize com as credenciais corretas
-	DB, err := gorm.Open(mysql.Open(dataSourceName), &gorm.Config{})
+	conexao := "user=docker dbname=DbParadigmas password=postgres host=MyPostgres sslmode=disable"
+
+	dataBase, err := sql.Open("postgres", conexao)
+
 	if err != nil {
-		log.Panic("Erro ao conectar com o banco de dados", err)
+		log.Panic("Erro ao conectar ao banco de dados: ", err)
 	}
 
-	fmt.Println("Conectado ao banco de dados com sucesso!")
-	DB.AutoMigrate(&models.Hero{})
+	return dataBase
 }
