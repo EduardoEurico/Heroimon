@@ -1,0 +1,33 @@
+<!-- templates/ListMissions.html -->
+{{define "ListMissions"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Missões</title>
+</head>
+<body>
+<h1>Lista de Missões</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nome Missão</th>
+        <th>Nível Dificuldade</th>
+        <th>Ações</th>
+    </tr>
+    {{range .}}
+    <tr>
+        <td>{{.ID}}</td>
+        <td>{{.NomeMissao}}</td>
+        <td>{{.NivelDificuldade}}</td>
+        <td>
+            <a href="/edit-mission?id={{.ID}}">Editar</a>
+            <a href="/delete-mission?id={{.ID}}">Excluir</a>
+        </td>
+    </tr>
+    {{end}}
+</table>
+<a href="/create-mission">Criar Nova Missão</a>
+</body>
+</html>
+{{end}}

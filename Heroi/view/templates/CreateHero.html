@@ -1,0 +1,27 @@
+<!-- templates/CreateHero.html -->
+{{define "CreateHero"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Novo Herói</title>
+</head>
+<body>
+<h1>Criar Novo Herói</h1>
+<form action="/insert-hero" method="post">
+    Nome Real: <input type="text" name="nome_real"><br>
+    Nome Herói: <input type="text" name="nome_heroi"><br>
+    Sexo: <input type="text" name="sexo"><br>
+    Altura: <input type="text" name="altura"><br>
+    Peso: <input type="text" name="peso"><br>
+    Data de Nascimento: <input type="date" name="data_nascimento"><br>
+    Local de Nascimento: <input type="text" name="local_nascimento"><br>
+    Poderes (separados por vírgula): <input type="text" name="poderes"><br>
+    Nível de Força: <input type="number" name="nivel_forca"><br>
+    Popularidade: <input type="number" name="popularidade"><br>
+    Status: <input type="text" name="status"><br>
+    <input type="submit" value="Criar">
+</form>
+</body>
+</html>
+{{end}}

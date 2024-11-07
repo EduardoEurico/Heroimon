@@ -1,0 +1,35 @@
+<!-- templates/ListCrimes.html -->
+{{define "ListCrimes"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Crimes</title>
+</head>
+<body>
+<h1>Lista de Crimes</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nome Crime</th>
+        <th>Data</th>
+        <th>Severidade</th>
+        <th>Ações</th>
+    </tr>
+    {{range .}}
+    <tr>
+        <td>{{.ID}}</td>
+        <td>{{.NomeCrime}}</td>
+        <td>{{.DataCrime}}</td>
+        <td>{{.Severidade}}</td>
+        <td>
+            <a href="/edit-crime?id={{.ID}}">Editar</a>
+            <a href="/delete-crime?id={{.ID}}">Excluir</a>
+        </td>
+    </tr>
+    {{end}}
+</table>
+<a href="/create-crime">Criar Novo Crime</a>
+</body>
+</html>
+{{end}}

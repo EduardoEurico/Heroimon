@@ -1,0 +1,29 @@
+<!-- templates/CreateMission.html -->
+{{define "CreateMission"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Nova Missão</title>
+</head>
+<body>
+<h1>Criar Nova Missão</h1>
+<form action="/insert-mission" method="post">
+    Nome Missão: <input type="text" name="nome_missao"><br>
+    Descrição: <textarea name="descricao"></textarea><br>
+    Nível Dificuldade: <input type="number" name="nivel_dificuldade"><br>
+    Recompensa: <input type="number" name="recompensa"><br>
+    Resultado:
+    <select name="resultado">
+        <option value="Sucesso">Sucesso</option>
+        <option value="Fracasso">Fracasso</option>
+    </select><br>
+    Heróis Designados:<br>
+    {{range .}}
+    <input type="checkbox" name="herois_designados" value="{{.ID}}">{{.NomeHeroi}}<br>
+    {{end}}
+    <input type="submit" value="Criar">
+</form>
+</body>
+</html>
+{{end}}

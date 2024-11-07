@@ -1,0 +1,28 @@
+<!-- templates/StartBattle.html -->
+{{define "StartBattle"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Batalha</title>
+</head>
+    <body>
+        <h1>Iniciar Batalha</h1>
+        <form action="/battle-result" method="post">
+            Herói 1:
+            <select name="heroi1_id">
+                {{range .}}
+                <option value="{{.ID}}">{{.NomeHeroi}}</option>
+                {{end}}
+            </select><br>
+            Herói 2:
+            <select name="heroi2_id">
+                {{range .}}
+                <option value="{{.ID}}">{{.NomeHeroi}}</option>
+                {{end}}
+            </select><br>
+            <input type="submit" value="Iniciar Batalha">
+        </form>
+    </body>
+</html>
+{{end}}

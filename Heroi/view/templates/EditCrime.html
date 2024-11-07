@@ -1,0 +1,28 @@
+<!-- templates/EditCrime.html -->
+{{define "EditCrime"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Crime</title>
+</head>
+<body>
+<h1>Editar Crime</h1>
+<form action="/update-crime" method="post">
+  <input type="hidden" name="id" value="{{.Crime.ID}}">
+  Nome Crime: <input type="text" name="nome_crime" value="{{.Crime.NomeCrime}}"><br>
+  Descrição: <textarea name="descricao">{{.Crime.Descricao}}</textarea><br>
+  Data do Crime: <input type="date" name="data_crime" value="{{.Crime.DataCrime}}"><br>
+  Severidade: <input type="number" name="severidade" value="{{.Crime.Severidade}}"><br>
+  Oculto: <input type="checkbox" name="oculto" {{if .Crime.Oculto}}checked{{end}}><br>
+  Herói Responsável:
+  <select name="heroi_responsavel">
+    {{range .Heroes}}
+    <option value="{{.ID}}" {{if eq $.Crime.HeroiResponsavel .ID}}selected{{end}}>{{.NomeHeroi}}</option>
+    {{end}}
+  </select><br>
+  <input type="submit" value="Atualizar">
+</form>
+</body>
+</html>
+{{end}}

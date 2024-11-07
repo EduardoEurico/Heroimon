@@ -1,0 +1,28 @@
+<!-- templates/EditHero.html -->
+{{define "EditHero"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Herói</title>
+</head>
+<body>
+<h1>Editar Herói</h1>
+<form action="/update-hero" method="post">
+    <input type="hidden" name="id" value="{{.ID}}">
+    Nome Real: <input type="text" name="nome_real" value="{{.NomeReal}}"><br>
+    Nome Herói: <input type="text" name="nome_heroi" value="{{.NomeHeroi}}"><br>
+    Sexo: <input type="text" name="sexo" value="{{.Sexo}}"><br>
+    Altura: <input type="text" name="altura" value="{{.Altura}}"><br>
+    Peso: <input type="text" name="peso" value="{{.Peso}}"><br>
+    Data de Nascimento: <input type="date" name="data_nascimento" value="{{.DataNascimento}}"><br>
+    Local de Nascimento: <input type="text" name="local_nascimento" value="{{.LocalNascimento}}"><br>
+    Poderes (separados por vírgula): <input type="text" name="poderes" value="{{join .Poderes ","}}"><br>
+    Nível de Força: <input type="number" name="nivel_forca" value="{{.NivelForca}}"><br>
+    Popularidade: <input type="number" name="popularidade" value="{{.Popularidade}}"><br>
+    Status: <input type="text" name="status" value="{{.Status}}"><br>
+    <input type="submit" value="Atualizar">
+</form>
+</body>
+</html>
+{{end}}

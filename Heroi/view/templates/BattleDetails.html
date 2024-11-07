@@ -1,0 +1,19 @@
+<!-- templates/BattleDetails.html -->
+{{define "BattleDetails"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes da Batalha</title>
+</head>
+    <body>
+        <h1>Detalhes da Batalha</h1>
+        <p>ID: {{.ID}}</p>
+        <p>Herói 1: {{.Heroi1Nome}}</p>
+        <p>Herói 2: {{.Heroi2Nome}}</p>
+        <p>Data: {{.Data}}</p>
+        <p>Resultado: {{.Resultado}}</p>
+        <a href="/battles">Voltar para a Lista de Batalhas</a>
+    </body>
+</html>
+{{end}}

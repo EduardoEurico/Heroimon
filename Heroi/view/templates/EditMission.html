@@ -1,0 +1,31 @@
+<!-- templates/EditMission.html -->
+{{define "EditMission"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Missão</title>
+</head>
+<body>
+<h1>Editar Missão</h1>
+<form action="/update-mission" method="post">
+    <input type="hidden" name="id" value="{{.Mission.ID}}">
+    Nome Missão: <input type="text" name="nome_missao" value="{{.Mission.NomeMissao}}"><br>
+    Descrição: <textarea name="descricao">{{.Mission.Descricao}}</textarea><br>
+    Nível Dificuldade: <input type="number" name="nivel_dificuldade" value="{{.Mission.NivelDificuldade}}"><br>
+    Recompensa: <input type="number" name="recompensa" value="{{.Mission.Recompensa}}"><br>
+    Resultado:
+    <select name="resultado">
+        <option value="Sucesso" {{if eq .Mission.Resultado "Sucesso"}}selected{{end}}>Sucesso</option>
+        <option value="Fracasso" {{if eq .Mission.Resultado "Fracasso"}}selected{{end}}>Fracasso</option>
+    </select><br>
+    Heróis Designados:<br>
+    {{range .Heroes}}
+    <input type="checkbox" name="herois_designados" value="{{.ID}}"
+           {{if containsInt $.Mission.HeroisDesignados .ID}}checked{{end}}>{{.NomeHeroi}}<br>
+    {{end}}
+    <input type="submit" value="Atualizar">
+</form>
+</body>
+</html>
+{{end}}

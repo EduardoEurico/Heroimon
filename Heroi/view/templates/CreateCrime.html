@@ -1,0 +1,26 @@
+<!-- templates/CreateCrime.html -->
+{{define "CreateCrime"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Novo Crime</title>
+</head>
+  <body>
+  <h1>Criar Novo Crime</h1>
+    <form action="/insert-crime" method="post">
+      Nome Crime: <input type="text" name="nome_crime"><br>
+      Descrição: <textarea name="descricao"></textarea><br>
+      Data do Crime: <input type="date" name="data_crime"><br>
+      Severidade: <input type="number" name="severidade"><br>
+      Herói Responsável:
+      <select name="heroi_responsavel">
+        {{range .}}
+        <option value="{{.ID}}">{{.NomeHeroi}}</option>
+        {{end}}
+      </select><br>
+      <input type="submit" value="Criar">
+    </form>
+  </body>
+</html>
+{{end}}
