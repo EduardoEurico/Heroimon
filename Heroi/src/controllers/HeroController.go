@@ -209,6 +209,7 @@ func RemoveHero(id string) {
 // Funcao para buscar pelo nome do heroi
 func GetHeroByHeroName(name string) ([]models.Hero, error) {
 	dataBase := dataBase.ConnectDataBase()
+
 	defer dataBase.Close()
 
 	query := `

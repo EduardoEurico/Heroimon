@@ -11,7 +11,9 @@ type Hero struct {
 	Weight        float64   `json:"weight"`         // Peso em quilogramas
 	BirthDate     time.Time `json:"birth_date"`     // Data de nascimento
 	BirthPlace    string    `json:"birth_place"`    // Local de nascimento
+	Powers        []string  `json:"powers"`         // Poderes
 	StrengthLevel int       `json:"strength_level"` // Nível de força
 	Popularity    int       `json:"popularity"`     // Popularidade
 	Status        string    `json:"status"`         // Status (e.g., Ativo, Banido)
+	BattleHistory []Battle  `json:"battle_history"` // Histórico de batalhas
 }
