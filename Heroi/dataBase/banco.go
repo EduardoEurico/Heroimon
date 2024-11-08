@@ -2,14 +2,15 @@ package dataBase
 
 import (
 	"database/sql"
-	_ "github.com/lib/pq"
 	"log"
+
+	_ "github.com/lib/pq"
 )
 
 // Funcao para conectar ao banco de dados
 func ConnectDataBase() *sql.DB {
 	// Data Source Name do banco de dados
-	conexao := "user=docker dbname=DbParadigmas password=postgres host=MyPostgres sslmode=disable"
+	conexao := "user=postgres dbname=postgres password=postgres host=localhost port=5433 sslmode=disable"
 
 	dataBase, err := sql.Open("postgres", conexao)
 

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"strings"
+	"fmt"
 )
 
 type Hero struct {
@@ -22,28 +23,32 @@ type Hero struct {
 	BattleHistory []BattleRecord `json:"battle_history"` // Histórico de batalhas
 }
 
-// Funcao para adicionar um novo herois
+// AddHero adds a new hero to the database.
 func AddHero(db *sql.DB, hero Hero) error {
+    // Converte a lista de poderes em uma string separada por vírgulas
+    poderesStr := strings.Join(hero.Powers, ",")
+    
+    // A consulta SQL para inserir os dados do herói na tabela "heroes"
+    query := `INSERT INTO heroes 
+        (nome_real, nome_heroi, sexo, altura, peso, data_nascimento, local_nascimento, poderes, nivel_forca, popularidade, status)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`
+    
+    // Logando a consulta para ajudar no diagnóstico
+    log.Printf("Executando consulta SQL: %s", query)
 
-	powersString := strings.Join(hero.Powers, ",")
-
-	insertData, err := db.Prepare("insert into heroes (nome_real, nome_heroi, sexo, altura, peso, data_nascimento, local_nascimento, poderes, nivel_forca, popularidade, status) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)")
-
-	if err != nil {
-		log.Println("Erro ao inserir herói (Prepare): ", err)
-		return err
-	}
-
-	_, err = insertData.Exec(hero.RealName, hero.HeroName, hero.Gender, hero.Height,
-		hero.Weight, hero.BirthDate, hero.BirthPlace, powersString, hero.StrengthLevel, hero.Popularity, hero.Status)
-
-	if err != nil {
-		log.Println("Erro ao inserir herói (Exec): ", err)
-		return err
-	}
-
-	return nil
+    // Executando a consulta com os parâmetros passados
+    _, err := db.Exec(query, hero.RealName, hero.HeroName, hero.Gender, hero.Height, hero.Weight, hero.BirthDate,
+        hero.BirthPlace, poderesStr, hero.StrengthLevel, hero.Popularity, hero.Status)
+    
+    // Tratando erro
+    if err != nil {
+        log.Printf("Erro ao inserir herói (nome: %s): %v", hero.HeroName, err)
+        return fmt.Errorf("erro ao adicionar herói: %w", err) // Usando %w para empacotar o erro
+    }
+    
+    return nil
 }
+
 
 // Funcao para deletar um heroi
 func RemoveHero(db *sql.DB, id int) error {

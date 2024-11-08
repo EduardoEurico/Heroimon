@@ -8,7 +8,7 @@ import (
 )
 
 func init() {
-	err := os.Chdir("/home/kaynan/Documentos/desenvolvimento/go/Heroimon/Heroi/view")
+	err := os.Chdir("C:/Users/roger/Documents/Heroimon/Heroi/view")
 	if err != nil {
 		log.Fatalf("Erro ao definir o diretório de trabalho: %v", err)
 	}

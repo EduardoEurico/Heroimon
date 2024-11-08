@@ -78,11 +78,10 @@ func InsertHero(w http.ResponseWriter, r *http.Request) {
 
 		// Insert into database
 		db := dataBase.ConnectDataBase()
-		models.AddHero(db, newHero)
-
-		defer db.Close()
-
 		err = models.AddHero(db, newHero)
+		log.Print("Olá, estou aqui")
+		defer db.Close()
+		
 		if err != nil {
 			log.Println("Erro ao adicionar herói:", err)
 			http.Error(w, "Erro ao adicionar herói", http.StatusInternalServerError)
