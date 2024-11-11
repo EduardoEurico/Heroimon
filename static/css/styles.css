@@ -1,0 +1,310 @@
+/* Styles for the battle page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1d1f2f;
+    color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.battle-container {
+    width: 60%;
+    padding: 20px;
+    background-color: #2c2f40;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+h1 {
+    color: #e84545;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-transform: uppercase;
+}
+.battle-detail {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+.battle-detail span {
+    font-weight: bold;
+    color: #5db2f2;
+}
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e84545;
+    color: #f2f2f2;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.back-link:hover {
+    background-color: #c73e3e;
+}
+.result-container {
+    width: 50%;
+    padding: 20px;
+    background-color: #2c2f40;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+.result-message {
+    font-size: 1.5em;
+    margin: 20px 0;
+    color: #5db2f2;
+}
+.start-battle {
+    width: 50%;
+    padding: 20px;
+    background-color: #2c2f40;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 200px; 
+}
+
+/* Styles for the mission page */
+.mission-container {
+    width: 70%;
+    padding: 20px;
+    background-color: #2c2f40;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    color: #f2f2f2;
+    text-align: center;
+    margin-top: 400px; 
+}
+
+/* Title styling */
+.mission-container h1, .mission-container h2 {
+    color: #e84545;
+    font-size: 2em;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Table styling */
+.mission-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.mission-table th, .mission-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #5db2f2;
+    color: #f2f2f2;
+}
+
+.mission-table th {
+    background-color: #1d1f2f;
+    color: #e84545;
+    font-weight: bold;
+}
+
+.mission-table tr:nth-child(even) {
+    background-color: #2c2f40;
+}
+
+.mission-table tr:hover {
+    background-color: #3b3f50;
+}
+
+/* Action link styling */
+.action-link {
+    color: #5db2f2;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.action-link:hover {
+    color: #c73e3e;
+}
+
+/* Form styling */
+.mission-form {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #2c2f40;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+.mission-form label {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: #f2f2f2;
+}
+
+.mission-form input[type="text"],
+.mission-form input[type="number"],
+.mission-form select,
+.mission-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #1d1f2f;
+    border: 1px solid #5db2f2;
+    border-radius: 5px;
+    color: #f2f2f2;
+}
+
+.mission-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.submit-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e84545;
+    color: #f2f2f2;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #c73e3e;
+}
+
+/* Back link styling */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #e84545;
+    color: #f2f2f2;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+    background-color: #c73e3e;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 1024px) {
+    /* Reduzir o tamanho do container principal em telas de tablet */
+    .battle-container, .result-container, .start-battle, .mission-container {
+        width: 80%;
+        padding: 15px;
+    }
+
+    /* Ajustar o tamanho do título */
+    h1 {
+        font-size: 2em;
+    }
+
+    .mission-table th, .mission-table td {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Reduzir ainda mais o tamanho do container para dispositivos móveis */
+    .battle-container, .result-container, .start-battle, .mission-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    /* Ajustar título e margens */
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    /* Ajustar os elementos de texto */
+    .battle-detail, .result-message {
+        font-size: 1em;
+    }
+
+    /* Diminuir tamanho da tabela */
+    .mission-table th, .mission-table td {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    /* Ajuste do botão e link de voltar */
+    .back-link, .submit-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajuste final para telas muito pequenas (smartphones) */
+    .battle-container, .result-container, .start-battle, .mission-container {
+        width: 100%;
+        padding: 8px;
+    }
+
+    /* Fonte menor para títulos */
+    h1 {
+        font-size: 1.5em;
+    }
+
+    /* Ajustar tabela para exibição em colunas */
+    .mission-table, .mission-table th, .mission-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    /* Esconder títulos de coluna na tabela em telas pequenas */
+    .mission-table th {
+        display: none;
+    }
+
+    /* Adicionar estilo de bloco para células de tabela em telas pequenas */
+    .mission-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #5db2f2;
+    }
+
+    /* Estilo para a etiqueta na tabela */
+    .mission-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #5db2f2;
+    }
+
+    /* Ajustar botões */
+    .back-link, .submit-button {
+        width: 100%;
+        font-size: 0.8em;
+        padding: 10px;
+    }
+}
+.edit-row {
+    display: none;
+}
+
+.mission-table tr.edit-row {
+    animation: slide-down 0.5s ease-out;
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

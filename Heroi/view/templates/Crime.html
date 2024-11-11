@@ -1,0 +1,59 @@
+{{define "Crime"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Crimes</title>
+</head>
+<body>
+
+<div class="container">
+    <!-- Listagem de Crimes -->
+    {{if .ShowListCrimes}}
+    <h1>Lista de Crimes</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome Crime</th>
+            <th>Data</th>
+            <th>Severidade</th>
+            <th>Ações</th>
+        </tr>
+        {{range .Crimes}}
+        <tr>
+            <td>{{.ID}}</td>
+            <td>{{.NomeCrime}}</td>
+            <td>{{.DataCrime}}</td>
+            <td>{{.Severidade}}</td>
+            <td>
+                <a href="/edit-crime?id={{.ID}}">Editar</a>
+                <a href="/delete-crime?id={{.ID}}">Excluir</a>
+            </td>
+        </tr>
+        {{end}}
+    </table>
+    {{end}}
+
+    <!-- Formulário para Criar ou Editar Crime -->
+    {{if .ShowFormCrime}}
+    <h1>{{if .IsEdit}}Editar Crime{{else}}Criar Novo Crime{{end}}</h1>
+    <form action="{{if .IsEdit}}/update-crime{{else}}/insert-crime{{end}}" method="post">
+        {{if .IsEdit}}<input type="hidden" name="id" value="{{.Crime.ID}}">{{end}}
+        <label>Nome Crime:</label> <input type="text" name="nome_crime" value="{{.Crime.NomeCrime}}"><br>
+        <label>Descrição:</label> <textarea name="descricao">{{.Crime.Descricao}}</textarea><br>
+        <label>Data do Crime:</label> <input type="date" name="data_crime" value="{{.Crime.DataCrime}}"><br>
+        <label>Severidade:</label> <input type="number" name="severidade" value="{{.Crime.Severidade}}"><br>
+        <label>Herói Responsável:</label>
+        <select name="heroi_responsavel">
+            {{range .Heroes}}
+            <option value="{{.ID}}" {{if eq .ID .Crime.HeroiResponsavel}}selected{{end}}>{{.NomeHeroi}}</option>
+            {{end}}
+        </select><br>
+        <input type="submit" value="{{if .IsEdit}}Atualizar{{else}}Criar{{end}}">
+    </form>
+    {{end}}
+
+</div>
+</body>
+</html>
+{{end}}

@@ -1,0 +1,50 @@
+{{define "Hero"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Heróis</title>
+</head>
+<body>
+
+<div class="container">
+    <!-- Listagem de Heróis -->
+    {{if .ShowListHeroes}}
+    <h1>Lista de Heróis</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome Real</th>
+            <th>Nome Herói</th>
+            <th>Ações</th>
+        </tr>
+        {{range .Heroes}}
+        <tr>
+            <td>{{.ID}}</td>
+            <td>{{.NomeReal}}</td>
+            <td>{{.NomeHeroi}}</td>
+            <td>
+                <a href="/edit-hero?id={{.ID}}">Editar</a>
+                <a href="/delete-hero?id={{.ID}}">Excluir</a>
+            </td>
+        </tr>
+        {{end}}
+    </table>
+    {{end}}
+
+    <!-- Formulário para Criar ou Editar Herói -->
+    {{if .ShowFormHero}}
+    <h1>{{if .IsEdit}}Editar Herói{{else}}Criar Novo Herói{{end}}</h1>
+    <form action="{{if .IsEdit}}/update-hero{{else}}/insert-hero{{end}}" method="post">
+        {{if .IsEdit}}<input type="hidden" name="id" value="{{.Hero.ID}}">{{end}}
+        <label>Nome Real:</label> <input type="text" name="nome_real" value="{{.Hero.NomeReal}}"><br>
+        <label>Nome Herói:</label> <input type="text" name="nome_heroi" value="{{.Hero.NomeHeroi}}"><br>
+        <!-- Outros campos... -->
+        <input type="submit" value="{{if .IsEdit}}Atualizar{{else}}Criar{{end}}">
+    </form>
+    {{end}}
+
+</div>
+</body>
+</html>
+{{end}}

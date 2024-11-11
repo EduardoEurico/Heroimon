@@ -1,0 +1,61 @@
+{{define "Battle"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Batalhas</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+
+    <!-- Iniciar Batalha -->
+    {{if .ShowStartBattle}}
+    <div class="start-battle">
+        <h1>Iniciar Batalha</h1>
+        <form action="/battle-result" method="post">
+            <label>Herói 1:</label>
+            <select name="heroi1_id">
+                {{range .Heroes}}
+                <option value="{{.ID}}">{{.NomeHeroi}}</option>
+                {{end}}
+            </select>
+            <label>Herói 2:</label>
+            <select name="heroi2_id">
+                {{range .Heroes}}
+                <option value="{{.ID}}">{{.NomeHeroi}}</option>
+                {{end}}
+            </select>
+            <input type="submit" value="Iniciar Batalha">
+        </form>
+    </div>
+    {{end}}    
+
+    <!-- Detalhes da Batalha -->
+    {{if .ShowBattleDetails}}
+    <div class="battle-container">
+        <h1>Detalhes da Batalha</h1>
+        <p><span>ID:</span> {{.Battle.ID}}</p>
+        <p><span>Herói 1:</span> {{.Battle.Heroi1Nome}}</p>
+        <p><span>Herói 2:</span> {{.Battle.Heroi2Nome}}</p>
+        <p><span>Data:</span> {{.Battle.Data}}</p>
+        <p><span>Resultado:</span> {{.Battle.Resultado}}</p>
+    </div>
+    {{end}}
+
+    <!-- Resultado da Batalha -->
+    {{if .ShowBattleResult}}
+    <div class="result-container">
+        <h1>Resultado da Batalha</h1>
+        <p>{{.BattleResult}}</p>
+    </div>
+    {{end}}
+
+    
+
+</div>
+</body>
+</html>
+{{end}}

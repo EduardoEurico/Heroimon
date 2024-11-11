@@ -22,7 +22,7 @@ docker network inspect my-network >/dev/null 2>&1 || {
 
 # Recriar o container do Postgres
 echo "Criando o container do Postgres (myPostgres)..."
-docker run -d --name myPostgres --network=my-network -p 5433:5432 -e POSTGRES_PASSWORD=postgres -v /home/kaynan/Documentos/desenvolvimento/go/Heroimon/postgresql/data:/var/lib/postgresql/data postgres
+docker run -d --name myPostgres --network=my-network -p 5433:5432 -e POSTGRES_PASSWORD=postgres -v /home/eduardo-eurico/Downloads/Heroimon/postgresql/data:/var/lib/postgresql/data postgres
 
 # Recriar o container do pgAdmin
 echo "Criando o container do pgAdmin (my-Pgadmin-new)..."

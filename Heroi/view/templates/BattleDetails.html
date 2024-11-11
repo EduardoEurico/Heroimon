@@ -5,15 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Detalhes da Batalha</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-    <body>
+<body>
+    <div class="battle-container">
         <h1>Detalhes da Batalha</h1>
-        <p>ID: {{.ID}}</p>
-        <p>Herói 1: {{.Heroi1Nome}}</p>
-        <p>Herói 2: {{.Heroi2Nome}}</p>
-        <p>Data: {{.Data}}</p>
-        <p>Resultado: {{.Resultado}}</p>
-        <a href="/battles">Voltar para a Lista de Batalhas</a>
-    </body>
+        <p class="battle-detail"><span>ID:</span> {{.ID}}</p>
+        <p class="battle-detail"><span>Herói 1:</span> {{.Heroi1Nome}}</p>
+        <p class="battle-detail"><span>Herói 2:</span> {{.Heroi2Nome}}</p>
+        <p class="battle-detail"><span>Data:</span> {{.Data}}</p>
+        <p class="battle-detail"><span>Resultado:</span> {{.Resultado}}</p>
+        <a href="/battles" class="back-link">Voltar para a Lista de Batalhas</a>
+    </div>
+</body>
 </html>
 {{end}}

@@ -1,0 +1,95 @@
+{{define "Mission"}}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Missões</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+
+<div class="mission-container">
+    <!-- Título da Página -->
+    <h1>Missões</h1>
+
+
+    <!-- Formulário para Criar ou Editar Missão -->
+    {{if .ShowFormMission}}
+    <div class="mission-form">
+        <h2>{{if .IsEdit}}Editar Missão{{else}}Criar Nova Missão{{end}}</h2>
+        <form action="{{if .IsEdit}}/update-mission{{else}}/insert-mission{{end}}" method="post">
+            {{if .IsEdit}}<input type="hidden" name="id" value="{{.Mission.ID}}">{{end}}
+            <label>Nome Missão:</label>
+            <input type="text" name="nome_missao" value="{{.Mission.NomeMissao}}">
+            <label>Descrição:</label>
+            <textarea name="descricao">{{.Mission.Descricao}}</textarea>
+            <label>Nível de Dificuldade:</label>
+            <input type="number" name="nivel_dificuldade" value="{{.Mission.NivelDificuldade}}">
+            <label>Herói Envolvido:</label>
+            <select name="heroi_envolvido">
+                {{range .Heroes}}
+                <option value="{{.ID}}" {{if eq .ID .Mission.HeroiEnvolvido}}selected{{end}}>{{.NomeHeroi}}</option>
+                {{end}}
+            </select>
+            <button type="submit" class="submit-button">{{if .IsEdit}}Atualizar{{else}}Criar{{end}}</button>
+        </form>
+    </div>
+    {{end}}
+
+    <!-- Listagem de Missões -->
+{{if .ShowListMissions}}
+<div class="mission-list">
+    <h2>Lista de Missões</h2>
+    <table class="mission-table">
+        <tr>
+            <th>ID</th>
+            <th>Nome Missão</th>
+            <th>Nível de Dificuldade</th>
+            <th>Ações</th>
+        </tr>
+        {{range .Missions}}
+        <tr>
+            <td>{{.ID}}</td>
+            <td>{{.NomeMissao}}</td>
+            <td>{{.NivelDificuldade}}</td>
+            <td>
+                <button type="button" class="action-link" onclick="showEditRow('{{.ID}}')">Editar</button>
+                <form method="post" action="/delete-mission" style="display:inline;">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <button type="submit" class="action-link">Excluir</button>
+                </form>
+            </td>
+        </tr>
+            <tr id="edit-row-{{.ID}}" class="edit-row">
+                <form method="post" action="/update-mission">
+                    <td>{{.ID}}</td>
+                    <td><input type="text" name="nome" value="{{.NomeMissao}}"></td>
+                    <td><input type="text" name="nivel" value="{{.NivelDificuldade}}"></td>
+                    <td>
+                        <input type="hidden" name="id" value="{{.ID}}">
+                        <button type="submit" class="action-link">Confirmar</button>
+                        <button type="button" class="action-link" onclick="hideEditRow('{{.ID}}')">Cancelar</button>
+                    </td>
+                </form>
+        </tr>
+        {{end}}
+    </table>
+
+<script>
+function showEditRow(id) {
+    document.getElementById('edit-row-' + id).style.display = 'table-row';
+}
+
+function hideEditRow(id) {
+    document.getElementById('edit-row-' + id).style.display = 'none';
+}
+</script>
+</div>
+{{end}}
+
+    <a href="/" class="back-link">Voltar</a>
+</div>
+
+</body>
+</html>
+{{end}}
