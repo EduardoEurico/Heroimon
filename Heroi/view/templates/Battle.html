@@ -11,25 +11,22 @@
 <div class="container">
 
 
-    <!-- Iniciar Batalha -->
     {{if .ShowStartBattle}}
     <div class="start-battle">
         <h1>Iniciar Batalha</h1>
-        <form action="/battle-result" method="post">
-            <label>Herói 1:</label>
-            <select name="heroi1_id">
-                {{range .Heroes}}
-                <option value="{{.ID}}">{{.NomeHeroi}}</option>
-                {{end}}
-            </select>
-            <label>Herói 2:</label>
-            <select name="heroi2_id">
-                {{range .Heroes}}
-                <option value="{{.ID}}">{{.NomeHeroi}}</option>
-                {{end}}
-            </select>
-            <input type="submit" value="Iniciar Batalha">
-        </form>
+        <label>Herói 1:</label>
+        <select id="heroi1_id">
+            {{range .Heroes}}
+            <option value="{{.ID}}">{{.NomeHeroi}}</option>
+            {{end}}
+        </select>
+        <label>Herói 2:</label>
+        <select id="heroi2_id">
+            {{range .Heroes}}
+            <option value="{{.ID}}">{{.NomeHeroi}}</option>
+            {{end}}
+        </select>
+        <button onclick="startBattle()">Iniciar Batalha</button>
     </div>
     {{end}}    
 
@@ -46,12 +43,33 @@
     {{end}}
 
     <!-- Resultado da Batalha -->
-    {{if .ShowBattleResult}}
-    <div class="result-container">
+    <div id="battle-result" class="result-container" style="display:none;">
         <h1>Resultado da Batalha</h1>
-        <p>{{.BattleResult}}</p>
+        <p id="battle-result-text"></p>
     </div>
-    {{end}}
+
+    <script>
+        async function startBattle() {
+            const heroi1_id = document.getElementById('heroi1_id').value;
+            const heroi2_id = document.getElementById('heroi2_id').value;
+        
+            const response = await fetch('/start-battle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ heroi1_id, heroi2_id })
+            });
+        
+            if (response.ok) {
+                const result = await response.json();
+                document.getElementById('battle-result').style.display = 'block';
+                document.getElementById('battle-result-text').textContent = result.message;
+            } else {
+                console.error('Erro ao iniciar batalha');
+            }
+        }
+        </script>
+
+    
 
     
 
