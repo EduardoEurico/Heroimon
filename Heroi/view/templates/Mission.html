@@ -17,16 +17,16 @@
     {{if .ShowFormMission}}
     <div class="mission-form">
         <h2>{{if .IsEdit}}Editar Missão{{else}}Criar Nova Missão{{end}}</h2>
-        <form action="{{if .IsEdit}}/update-mission{{else}}/insert-mission{{end}}" method="post">
+        <form id="missionForm" action="{{if .IsEdit}}/update-mission{{else}}/insert-mission{{end}}" method="post">
             {{if .IsEdit}}<input type="hidden" name="id" value="{{.Mission.ID}}">{{end}}
             <label>Nome Missão:</label>
-            <input type="text" name="nome_missao" value="{{.Mission.NomeMissao}}">
+            <input type="text" name="nome_missao" value="{{.Mission.NomeMissao}}" required>
             <label>Descrição:</label>
-            <textarea name="descricao">{{.Mission.Descricao}}</textarea>
+            <textarea name="descricao" required>{{.Mission.Descricao}}</textarea>
             <label>Nível de Dificuldade:</label>
-            <input type="number" name="nivel_dificuldade" value="{{.Mission.NivelDificuldade}}">
+            <input type="number" name="nivel_dificuldade" value="{{.Mission.NivelDificuldade}}" required>
             <label>Herói Envolvido:</label>
-            <select name="heroi_envolvido">
+            <select name="heroi_envolvido" required>
                 {{range .Heroes}}
                 <option value="{{.ID}}" {{if eq .ID .Mission.HeroiEnvolvido}}selected{{end}}>{{.NomeHeroi}}</option>
                 {{end}}
@@ -54,33 +54,24 @@
             <td>{{.NivelDificuldade}}</td>
             <td>
                 <button type="button" class="action-link" onclick="showEditRow('{{.ID}}')">Editar</button>
-                <form method="post" action="/delete-mission" style="display:inline;">
+                <form onsubmit="deleteMission(event, '{{.ID}}')" style="display:inline;">
                     <input type="hidden" name="id" value="{{.ID}}">
                     <button type="submit" class="action-link">Excluir</button>
                 </form>
-            </td>
-        </tr>
-            <tr id="edit-row-{{.ID}}" class="edit-row">
-                <form method="post" action="/update-mission">
-                    <td>{{.ID}}</td>
-                    <td><input type="text" name="nome" value="{{.NomeMissao}}"></td>
-                    <td><input type="text" name="nivel" value="{{.NivelDificuldade}}"></td>
-                    <td>
-                        <input type="hidden" name="id" value="{{.ID}}">
-                        <button type="submit" class="action-link">Confirmar</button>
-                        <button type="button" class="action-link" onclick="hideEditRow('{{.ID}}'
-
-
-
-
-
-
-
-
-
-
-                        )">Cancelar</button>
-                    </td>
+                
+                <!-- Linha de edição da missão -->
+                <tr id="edit-row-{{.ID}}" class="edit-row">
+                    <form onsubmit="updateMission(event, '{{.ID}}')">
+                        <td>{{.ID}}</td>
+                        <td><input type="text" name="nome_missao" value="{{.NomeMissao}}"></td>
+                        <td><input type="text" name="nivel_dificuldade" value="{{.NivelDificuldade}}"></td>
+                        <td>
+                            <input type="hidden" name="id" value="{{.ID}}">
+                            <button type="submit" class="action-link">Confirmar</button>
+                            <button type="button" class="action-link" onclick="hideEditRow('{{.ID}}')">Cancelar</button>
+                        </td>
+                    </form>
+                </tr>
                 </form>
         </tr>
         {{end}}
@@ -93,6 +84,46 @@ function showEditRow(id) {
 
 function hideEditRow(id) {
     document.getElementById('edit-row-' + id).style.display = 'none';
+}
+
+document.getElementById("missionForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const actionUrl = this.getAttribute("action");
+
+    fetch(actionUrl, {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            updateMissionTable(data.mission);
+        } else {
+            alert("Erro: " + data.message);
+        }
+    })
+    .catch(error => console.error("Erro na requisição:", error));
+});
+
+function updateMissionTable(mission) {
+    const missionTable = document.querySelector(".mission-table tbody");
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>${mission.ID}</td>
+        <td>${mission.MissionName}</td>
+        <td>${mission.Dificulty}</td>
+        <td>
+            <button type="button" class="action-link" onclick="showEditRow('${mission.ID}')">Editar</button>
+            <form method="post" action="/delete-mission" style="display:inline;">
+                <input type="hidden" name="id" value="${mission.ID}">
+                <button type="submit" class="action-link">Excluir</button>
+            </form>
+        </td>
+    `;
+
+    missionTable.appendChild(row);
 }
 </script>
 </div>
