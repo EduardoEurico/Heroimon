@@ -5,25 +5,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Criar Nova Missão</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-<h1>Criar Nova Missão</h1>
-<form action="/insert-mission" method="post">
-    Nome Missão: <input type="text" name="nome_missao"><br>
-    Descrição: <textarea name="descricao"></textarea><br>
-    Nível Dificuldade: <input type="number" name="nivel_dificuldade"><br>
-    Recompensa: <input type="number" name="recompensa"><br>
-    Resultado:
-    <select name="resultado">
-        <option value="Sucesso">Sucesso</option>
-        <option value="Fracasso">Fracasso</option>
-    </select><br>
-    Heróis Designados:<br>
-    {{range .}}
-    <input type="checkbox" name="herois_designados" value="{{.ID}}">{{.NomeHeroi}}<br>
-    {{end}}
-    <input type="submit" value="Criar">
-</form>
+  <div class="mission-container">
+    <h1>Criar Nova Missão</h1>
+    <form class="mission-form" action="/insert-mission" method="post">
+        <label>Nome Missão:</label>
+        <input type="text" name="nome_missao">
+
+        <label>Descrição:</label>
+        <textarea name="descricao"></textarea>
+
+        <label>Nível Dificuldade:</label>
+        <input type="number" name="nivel_dificuldade">
+
+        <label>Recompensa:</label>
+        <input type="number" name="recompensa">
+
+        <label>Resultado:</label>
+        <select name="resultado">
+            <option value="Sucesso">Sucesso</option>
+            <option value="Fracasso">Fracasso</option>
+        </select>
+
+        <label>Heróis Designados:</label>
+        {{range .}}
+        <div>
+          <input type="checkbox" name="herois_designados" value="{{.ID}}">{{.NomeHeroi}}
+        </div>
+        {{end}}
+
+        <input class="submit-button" type="submit" value="Criar">
+    </form>
+    <a class="back-link" href="/">Voltar para a Página Inicial</a>
+  </div>
 </body>
 </html>
 {{end}}

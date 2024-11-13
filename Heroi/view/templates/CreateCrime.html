@@ -5,22 +5,35 @@
 <head>
   <meta charset="UTF-8">
   <title>Criar Novo Crime</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-  <body>
-  <h1>Criar Novo Crime</h1>
-    <form action="/insert-crime" method="post">
-      Nome Crime: <input type="text" name="nome_crime"><br>
-      Descrição: <textarea name="descricao"></textarea><br>
-      Data do Crime: <input type="date" name="data_crime"><br>
-      Severidade: <input type="number" name="severidade"><br>
-      Herói Responsável:
-      <select name="heroi_responsavel">
+<body>
+  <div class="mission-container">
+    <h1>Criar Novo Crime</h1>
+    <form action="/insert-crime" method="post" class="mission-form">
+      <label for="nome_crime">Nome Crime:</label>
+      <input type="text" id="nome_crime" name="nome_crime">
+      
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" name="descricao"></textarea>
+      
+      <label for="data_crime">Data do Crime:</label>
+      <input type="date" id="data_crime" name="data_crime">
+      
+      <label for="severidade">Severidade:</label>
+      <input type="number" id="severidade" name="severidade">
+      
+      <label for="heroi_responsavel">Herói Responsável:</label>
+      <select id="heroi_responsavel" name="heroi_responsavel">
         {{range .}}
         <option value="{{.ID}}">{{.NomeHeroi}}</option>
         {{end}}
-      </select><br>
-      <input type="submit" value="Criar">
+      </select>
+      
+      <input type="submit" value="Criar" class="submit-button">
     </form>
-  </body>
+    <a class="back-link" href="/crimes">Voltar para a Lista de Crimes</a>
+  </div>
+</body>
 </html>
 {{end}}

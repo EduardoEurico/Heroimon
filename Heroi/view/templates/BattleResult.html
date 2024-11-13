@@ -1,14 +1,18 @@
+<!-- templates/BattleResult.html -->
 {{define "BattleResult"}}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Resultado da Batalha</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-    <body>
+<body>
+    <div class="result-container">
         <h1>Resultado da Batalha</h1>
-        <p>{{.}}</p>
-        <a href="/battles">Voltar para a Lista de Batalhas</a>
-    </body>
+        <p class="result-message">{{.}}</p>
+        <a class="back-link" href="/battles">Voltar para a Lista de Batalhas</a>
+    </div>
+</body>
 </html>
 {{end}}

@@ -5,23 +5,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Criar Novo Herói</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-<h1>Criar Novo Herói</h1>
-<form action="/insert-hero" method="post">
-    Nome Real: <input type="text" name="nome_real"><br>
-    Nome Herói: <input type="text" name="nome_heroi"><br>
-    Sexo: <input type="text" name="sexo"><br>
-    Altura: <input type="text" name="altura"><br>
-    Peso: <input type="text" name="peso"><br>
-    Data de Nascimento: <input type="date" name="data_nascimento"><br>
-    Local de Nascimento: <input type="text" name="local_nascimento"><br>
-    Poderes (separados por vírgula): <input type="text" name="poderes"><br>
-    Nível de Força: <input type="number" name="nivel_forca"><br>
-    Popularidade: <input type="number" name="popularidade"><br>
-    Status: <input type="text" name="status"><br>
-    <input type="submit" value="Criar">
-</form>
+  <div class="mission-container">
+    <h1>Criar Novo Herói</h1>
+    <form class="mission-form" action="/insert-hero" method="post">
+        <label>Nome Real:</label>
+        <input type="text" name="nome_real">
+
+        <label>Nome Herói:</label>
+        <input type="text" name="nome_heroi">
+
+        <label>Sexo:</label>
+        <input type="text" name="sexo">
+
+        <label>Altura:</label>
+        <input type="text" name="altura">
+
+        <label>Peso:</label>
+        <input type="text" name="peso">
+
+        <label>Data de Nascimento:</label>
+        <input type="date" name="data_nascimento">
+
+        <label>Local de Nascimento:</label>
+        <input type="text" name="local_nascimento">
+
+        <label>Poderes (separados por vírgula):</label>
+        <input type="text" name="poderes">
+
+        <label>Nível de Força:</label>
+        <input type="number" name="nivel_forca">
+
+        <label>Popularidade:</label>
+        <input type="number" name="popularidade">
+
+        <label>Status:</label>
+        <input type="text" name="status">
+
+        <input class="submit-button" type="submit" value="Criar">
+    </form>
+    <a class="back-link" href="/">Voltar para a Página Inicial</a>
+  </div>
 </body>
 </html>
 {{end}}

@@ -5,60 +5,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Heróis</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+
 </head>
 <body>
-<h1>Lista de Heróis</h1>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nome Real</th>
-        <th>Nome Herói</th>
-        <th>Ações</th>
-    </tr>
-    {{range .}}
-    <tr>
-        <td>{{.ID}}</td>
-        <td>{{.NomeReal}}</td>
-        <td>{{.NomeHeroi}}</td>
-        <td>
-            <a href="/edit-hero?id={{.ID}}">Editar</a>
-            <a href="/delete-hero?id={{.ID}}">Excluir</a>
-        </td>
-    </tr>
-    {{end}}
-</table>
-<a href="/create-hero">Criar Novo Herói</a>
+    <div class="mission-container">
+
+        <h1>Lista de Heróis</h1>
+        <table class="mission-table">
+            <tr>
+                <th>ID</th>
+                <th>Nome Real</th>
+                <th>Nome Herói</th>
+                <th>Ações</th>
+            </tr>
+            {{range .}}
+            <tr>
+                <td>{{.ID}}</td>
+                <td>{{.NomeReal}}</td>
+                <td>{{.NomeHeroi}}</td>
+                <td>
+                    <a href="/edit-hero?id={{.ID}}">Editar</a>
+                    <a href="/delete-hero?id={{.ID}}">Excluir</a>
+                </td>
+            </tr>
+            {{end}}
+        </table>
+        <a href="/create-hero">Criar Novo Herói</a>
+    </div>
 </body>
 </html>
-<!-- templates/ListHeroes.html -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Heróis</title>
-</head>
-<body>
-<h1>Lista de Heróis</h1>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nome Real</th>
-        <th>Nome Herói</th>
-        <th>Ações</th>
-    </tr>
-    {{range .}}
-    <tr>
-        <td>{{.ID}}</td>
-        <td>{{.NomeReal}}</td>
-        <td>{{.NomeHeroi}}</td>
-        <td>
-            <a href="/edit-hero?id={{.ID}}">Editar</a>
-            <a href="/delete-hero?id={{.ID}}">Excluir</a>
-        </td>
-    </tr>
-    {{end}}
-</table>
-<a href="/create-hero">Criar Novo Herói</a>
-</body>
-</html>
-{{end}}

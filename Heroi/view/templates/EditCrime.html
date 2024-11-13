@@ -5,24 +5,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Editar Crime</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
-<h1>Editar Crime</h1>
-<form action="/update-crime" method="post">
-  <input type="hidden" name="id" value="{{.Crime.ID}}">
-  Nome Crime: <input type="text" name="nome_crime" value="{{.Crime.NomeCrime}}"><br>
-  Descrição: <textarea name="descricao">{{.Crime.Descricao}}</textarea><br>
-  Data do Crime: <input type="date" name="data_crime" value="{{.Crime.DataCrime}}"><br>
-  Severidade: <input type="number" name="severidade" value="{{.Crime.Severidade}}"><br>
-  Oculto: <input type="checkbox" name="oculto" {{if .Crime.Oculto}}checked{{end}}><br>
-  Herói Responsável:
-  <select name="heroi_responsavel">
-    {{range .Heroes}}
-    <option value="{{.ID}}" {{if eq $.Crime.HeroiResponsavel .ID}}selected{{end}}>{{.NomeHeroi}}</option>
-    {{end}}
-  </select><br>
-  <input type="submit" value="Atualizar">
-</form>
+  <div class="battle-container">
+    <h1>Editar Crime</h1>
+    <form action="/update-crime" method="post" class="styled-form">
+      <input type="hidden" name="id" value="{{.Crime.ID}}">
+      
+      <label for="nome_crime">Nome Crime:</label>
+      <input type="text" id="nome_crime" name="nome_crime" value="{{.Crime.NomeCrime}}" required><br>
+
+      <label for="descricao">Descrição:</label>
+      <textarea id="descricao" name="descricao" required>{{.Crime.Descricao}}</textarea><br>
+
+      <label for="data_crime">Data do Crime:</label>
+      <input type="date" id="data_crime" name="data_crime" value="{{.Crime.DataCrime}}" required><br>
+
+      <label for="severidade">Severidade:</label>
+      <input type="number" id="severidade" name="severidade" value="{{.Crime.Severidade}}" min="1" max="10" required><br>
+
+      <label for="oculto">Oculto:</label>
+      <input type="checkbox" id="oculto" name="oculto" {{if .Crime.Oculto}}checked{{end}}><br>
+
+      <label for="heroi_responsavel">Herói Responsável:</label>
+      <select id="heroi_responsavel" name="heroi_responsavel" required>
+        {{range .Heroes}}
+        <option value="{{.ID}}" {{if eq $.Crime.HeroiResponsavel .ID}}selected{{end}}>{{.NomeHeroi}}</option>
+        {{end}}
+      </select><br>
+
+      <input type="submit" value="Atualizar" class="submit-button">
+    </form>
+  </div>
 </body>
 </html>
 {{end}}

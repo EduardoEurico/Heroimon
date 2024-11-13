@@ -5,24 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Batalha</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-    <body>
+<body>
+    <div class="start-battle">
         <h1>Iniciar Batalha</h1>
-        <form action="/battle-result" method="post">
-            Herói 1:
-            <select name="heroi1_id">
-                {{range .}}
-                <option value="{{.ID}}">{{.NomeHeroi}}</option>
-                {{end}}
-            </select><br>
-            Herói 2:
-            <select name="heroi2_id">
-                {{range .}}
-                <option value="{{.ID}}">{{.NomeHeroi}}</option>
-                {{end}}
-            </select><br>
-            <input type="submit" value="Iniciar Batalha">
+        <form action="/battle-result" method="post" class="mission-form">
+            <div class="mission-form-group">
+                <label for="heroi1_id">Herói 1:</label>
+                <select name="heroi1_id" id="heroi1_id">
+                    {{range .}}
+                    <option value="{{.ID}}">{{.NomeHeroi}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <div class="mission-form-group">
+                <label for="heroi2_id">Herói 2:</label>
+                <select name="heroi2_id" id="heroi2_id">
+                    {{range .}}
+                    <option value="{{.ID}}">{{.NomeHeroi}}</option>
+                    {{end}}
+                </select>
+            </div>
+            <input type="submit" value="Iniciar Batalha" class="submit-button">
         </form>
-    </body>
+    </div>
+</body>
 </html>
 {{end}}
